@@ -6,7 +6,7 @@ func sort(list []int) []int {
 	lenght := len(list)
 	key, j := 0, 0
 	
-	if lenght == 1 || lenght == 0 { 
+	if lenght < 2 { 
 		return list 
 	}
 	
