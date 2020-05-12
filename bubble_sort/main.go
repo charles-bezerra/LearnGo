@@ -3,6 +3,7 @@ package main
 import "fmt"
 
 func sort(list []int, n int) []int {
+	
 	if n < 1 { return list }
 
 	for i := n-1; i > 0; i-- {
