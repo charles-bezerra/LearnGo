@@ -14,13 +14,11 @@ func merge(left []int, right []int) []int {
 				list = append(list, left[0])
 				left = left[1:]			
 			}
-		}
-		
+		}		
 		if len(right) == 0 && len(left) > 0 {
 			list = append(list, left[0])
 			left = left[1:]
 		}
-
 	 	if len(left) == 0 && len(right) > 0 {
 			list = append(list, right[0])
 			right = right[1:]
@@ -32,11 +30,9 @@ func merge(left []int, right []int) []int {
  
 func sort(list []int) []int {
 	length := len(list)
-	
 	if length < 2 { 
 		return list 
 	}
-
 	middle := length/2 
 	return merge(sort(list[:middle]), sort(list[middle:]))
 }

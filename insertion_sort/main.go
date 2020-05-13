@@ -11,7 +11,7 @@ func sort(list []int) []int {
 	for i := 1; i < lenght; i++ {
 		j = i - 1
 		key = list[i]
-
+		
 		for j >= 0 && key < list[j] {
 			list[j+1] = list[j]
 			list[j] = key
