@@ -3,8 +3,6 @@ package main
 
 import (
 	"fmt"
-	"os"
-	"/home/charles/Desktop/LearnGo/quick_sort/util/util"
 )
 
 func quick(left []int, right []int) []int {
@@ -16,12 +14,6 @@ func sort(list []int) []int {
 }
 
 func main()  {
-	path, error := os.Getwd()
-
-	
-	if error != nil  {
-		fmt.Println(error)
-	}
-
-	fmt.Println(path)
+	list := []int{1,30,49,40,42,30,40}
+	fmt.Println(sort(list))
 }
