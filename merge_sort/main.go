@@ -1,33 +1,38 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func merge(left []int, right []int) []int {
-	list := []int{}
+	list_sorted := []int{}
 
 	for len(left) > 0 || len(right) > 0 {
 		if len(left) > 0 && len(right) > 0 {
-			if right[0] < left[0] {
-				list = append(list, right[0])
+			if left[0] > right[0] {
+				list_sorted = append(list_sorted, right[0])
 				right = right[1:]
+
 			} else {
-				list = append(list, left[0])
+				list_sorted = append(list_sorted, left[0])
 				left = left[1:]
+
 			}
 		}
 
-		if len(right) == 0 && len(left) > 0 {
-			list = append(list, left[0])
+		if len(left) > 0 && len(right) == 0 {
+			list_sorted = append(list_sorted, left[0])
 			left = left[1:]
+
 		}
 
-		if len(left) == 0 && len(right) > 0 {
-			list = append(list, right[0])
+		if len(right) > 0 && len(left) == 0 {
+			list_sorted = append(list_sorted, right[0])
 			right = right[1:]
 		}
 	}
 
-	return list
+	return list_sorted
 }
 
 func divide(list []int) []int {
@@ -41,12 +46,27 @@ func divide(list []int) []int {
 	return merge(divide(list[:middle]), divide(list[middle:]))
 }
 
-func sort(list []int) (response []int) {
-	response = divide(list)
-	return
+func sort(list []int) []int {
+	return divide(list)
 }
 
 func main() {
-	list := []int{1, 51, 6, 10, 2, 50, 12, 39, 12, 12}
-	fmt.Println(sort(list))
+	n := 0
+
+	fmt.Print("Enter with number of inputs: ")
+	fmt.Scanln(&n)
+
+	list := make([]int, n)
+
+	fmt.Print("List: ")
+	for i := 0; i < n; i++ {
+		fmt.Scan(&list[i])
+	}
+
+	fmt.Print("---------------")
+	for i := 0; i < len(list); i++ {
+		fmt.Print("--")
+	}
+
+	fmt.Println("\nSorted list:", sort(list))
 }
