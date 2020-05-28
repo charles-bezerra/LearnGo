@@ -23,7 +23,6 @@ func merge(left []int, right []int) []int {
 		if len(left) > 0 && len(right) == 0 {
 			list_sorted = append(list_sorted, left[0])
 			left = left[1:]
-
 		}
 
 		if len(right) > 0 && len(left) == 0 {
@@ -31,41 +30,31 @@ func merge(left []int, right []int) []int {
 			right = right[1:]
 		}
 	}
-
 	return list_sorted
 }
 
-func divide(list []int) []int {
+func mergeSort(list []int) []int {
 	length := len(list)
-
 	if length < 2 {
 		return list
 	}
-
 	middle := length / 2
-	return merge(divide(list[:middle]), divide(list[middle:]))
+	return merge(mergeSort(list[:middle]), mergeSort(list[middle:]))
 }
 
 func sort(list []int) []int {
-	return divide(list)
+	return mergeSort(list)
 }
 
 func main() {
 	n := 0
-
 	fmt.Print("Enter with number of inputs: ")
 	fmt.Scanln(&n)
 
 	list := make([]int, n)
-
 	fmt.Print("List: ")
 	for i := 0; i < n; i++ {
 		fmt.Scan(&list[i])
-	}
-
-	fmt.Print("---------------")
-	for i := 0; i < len(list); i++ {
-		fmt.Print("--")
 	}
 
 	fmt.Println("\nSorted list:", sort(list))

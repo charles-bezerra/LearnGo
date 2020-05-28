@@ -6,38 +6,26 @@ import (
 
 func quick_sort(list []int) []int {
 	length := len(list)
+	end := length - 1
 
 	if length < 2 {
 		return list
 	}
 
-	pivo_index := length - 1
-	pivo := list[pivo_index]
-	i := length - 2
+	pivo_index := 0
+	pivo := list[end]
 
-	for i >= 0 && pivo < list[i] {
-		list[i], list[i+1] = pivo, list[i]
-		pivo_index = i
-		i--
-	}
-
-	if length > 2 {
-		left := quick_sort(list[:pivo_index])
-		right := quick_sort(list[pivo_index+1:])
-
-		j := 0
-
-		for i = 0; i < length; i++ {
-			if i < pivo_index {
-				list[i] = left[i]
-
-			} else if i > pivo_index {
-				list[i] = right[j]
-				j++
-
-			}
+	for i := 0; i < end; i++ {
+		if list[i] < pivo {
+			list[i], list[pivo_index] = list[pivo_index], list[i]
+			pivo_index++
 		}
 	}
+
+	list[pivo_index], list[end] = list[end], list[pivo_index]
+
+	quick_sort(list[:pivo_index])   //left
+	quick_sort(list[pivo_index+1:]) //right
 
 	return list
 }

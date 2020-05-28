@@ -2,6 +2,10 @@ package main
 
 import "fmt"
 
+func change(list []int) {
+	list[0] = 0
+}
+
 func main() {
 	// const v int = 120
 	// fmt.Printf("%T - %v\n", v, v)
@@ -14,5 +18,6 @@ func main() {
 	// }
 
 	l := []int{1, 2, 3, 4}
-	fmt.Println(l[1:2])
+	change(l)
+	fmt.Println(l[:1])
 }
