@@ -9,25 +9,23 @@ func merge(left []int, right []int) []int {
 
 	for len(left) > 0 || len(right) > 0 {
 		if len(left) > 0 && len(right) > 0 {
-			if left[0] > right[0] {
-				list_sorted = append(list_sorted, right[0])
-				right = right[1:]
-
-			} else {
+			if left[0] <= right[0] {
 				list_sorted = append(list_sorted, left[0])
 				left = left[1:]
 
-			}
-		}
+			} else {
+				list_sorted = append(list_sorted, right[0])
+				right = right[1:]
 
-		if len(left) > 0 && len(right) == 0 {
+			}
+		} else if len(left) > 0 && len(right) == 0 {
 			list_sorted = append(list_sorted, left[0])
 			left = left[1:]
-		}
 
-		if len(right) > 0 && len(left) == 0 {
+		} else if len(right) > 0 && len(left) == 0 {
 			list_sorted = append(list_sorted, right[0])
 			right = right[1:]
+
 		}
 	}
 	return list_sorted
@@ -57,5 +55,5 @@ func main() {
 		fmt.Scan(&list[i])
 	}
 
-	fmt.Println("\nSorted list:", sort(list))
+	fmt.Println("Sorted list:", sort(list))
 }
